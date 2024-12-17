@@ -6,6 +6,8 @@ metadata:
   name: test
   namespace: fleet-local
 spec:
+  correctDrift: {}
+  ignore: {}
   kustomize: {}
   namespace: fleet-kustomize-example
   resources:
@@ -46,7 +48,7 @@ spec:
           spec:
             containers:
             - name: php-redis
-              image: gcr.io/google-samples/gb-frontend:v5
+              image: us-docker.pkg.dev/google-samples/containers/gke/gb-frontend:v5
               resources:
                 requests:
                   cpu: 100m
@@ -100,7 +102,7 @@ spec:
           spec:
             containers:
             - name: master
-              image: registry.k8s.io/redis:e2e
+              image: redis
               resources:
                 requests:
                   cpu: 100m
@@ -147,7 +149,7 @@ spec:
           spec:
             containers:
             - name: slave
-              image: gcr.io/google_samples/gb-redisslave:v2
+              image: redis
               resources:
                 requests:
                   cpu: 100m
@@ -192,7 +194,7 @@ spec:
   - content: |
       bases:
       - ../../base
-      patches:
+      patchesStrategicMerge:
       - redis-slave-deployment.yaml
       - redis-slave-service.yaml
     name: overlays/dev/kustomization.yaml
@@ -215,4 +217,6 @@ spec:
     name: overlays/dev/redis-slave-service.yaml
   targets:
   - clusterGroup: default
+    correctDrift: {}
+    ignore: {}
     name: default

@@ -2,23 +2,23 @@
 
 # The namespace this chart will be installed and restricted to,
 # if not specified the chart will be installed to "default"
-namespace: fleet-helm-oci-with-auth-example
+namespace: fleet-helm-example
 
 # Custom helm options
 helm:
   # The release name to use. If empty a generated release name will be used
-  releaseName: guestbook-private
+  releaseName: guestbook-frontend
 
   # The directory of the chart in the repo.  Also any valid go-getter supported
   # URL can be used there is specify where to download the chart from.
   # If repo below is set this value if the chart name in the repo
-  chart: "oci://ghcr.io/fleetrepoci/guestbook-private"
+  chart: ""
 
   # An https to a valid Helm repository to download the chart from
   repo: ""
 
   # Used if repo is set to look up the version of the chart
-  version: "0.0.0"
+  version: ""
 
   # Force recreate resource that can not be updated
   force: false
